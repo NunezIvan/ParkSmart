@@ -31,10 +31,22 @@ public class VentanaEstacionamiento {
     public void mostrarEstadoEstacionamiento(List<Vehiculo> listaVehiculos, int espaciosDisponibles) {
         limpiarConsola();
         
+        String tipo;
+        
         System.out.println("Vehiculos en el estacionamiento:");
         for (Vehiculo vehiculo : listaVehiculos) {
+            switch (vehiculo.getTipo()) {
+                case 'c' -> tipo = "CARRO";
+                case 'C' -> tipo = "CARRO";
+                case 'm' -> tipo = "MOTOCICLETA";
+                case 'M' -> tipo = "MOTOCICLETA";
+                case 'b' -> tipo = "BICICLETA";
+                case 'B' -> tipo = "BICICLETA";
+                default -> tipo = "No especificado";
+            }
+            
             System.out.println("Matricula: " + vehiculo.getMatricula() +
-                               ", Tipo: " + vehiculo.getTipo() +
+                               ", Tipo: " + tipo +
                                ", Hora de Entrada: " + vehiculo.getHoraEntradaFormateada());
         }
         
