@@ -47,17 +47,38 @@ public class VentanaEstacionamiento {
             
             System.out.println("Matricula: " + vehiculo.getMatricula() +
                                ", Tipo: " + tipo +
-                               ", Hora de Entrada: " + vehiculo.getHoraEntradaFormateada());
+                               ",\tHora de Entrada: " + vehiculo.getHoraEntradaFormateada());
         }
         
-        System.out.println("\nEspacios disponibles: " + espaciosDisponibles);
+        System.out.println("\nEspacios disponibles: " + espaciosDisponibles + "\n");
     }
 
     public Vehiculo pedirDatosVehiculo() {
+        // String matricula = scanner.nextLine();
         String matricula = modelo.generarMatriculaAleatoria();
-        System.out.print("Ingrese el tipo de vehiculo (ej. C para coche, M para moto): ");
-        char tipo = scanner.nextLine().charAt(0);
         
+        char tipo = 'a';
+        String input;
+        
+        do {
+            System.out.print("Ingrese el tipo de vehiculo (ej. C para coche, M para moto, B para bicicleta): ");
+            input = scanner.nextLine();
+
+            if (input.isEmpty()) {
+                limpiarConsola();
+                System.out.print("SELECCION INCORRECTA, NO PUEDE DEJAR EL CAMPO VACÍO\n");
+                continue;
+            }
+
+            tipo = input.charAt(0);
+
+            if (tipo != 'c' && tipo != 'C' && tipo != 'M' && tipo != 'm' && tipo != 'b' && tipo != 'B') {
+                limpiarConsola();
+                System.out.print("SELECCION INCORRECTA, SOLO UTILICE LO INDICADO\n");
+            }
+
+        } while (tipo != 'c' && tipo != 'C' && tipo != 'M' && tipo != 'm' && tipo != 'b' && tipo != 'B');
+
         return new Vehiculo(matricula, tipo, LocalDateTime.now(), null);
     }
     

@@ -49,7 +49,7 @@ public class Estacionamientos {
             precio = vehiculo.calcularTiempoEstadia() * tarifaPorHora;
             return precio;
         } else {
-            return 2;
+            return 0;
         }
     }
 
