@@ -44,7 +44,7 @@ public class ProgEstacionamiento {
                 vista.mostrarMensaje("\nNo se pudo registrar el vehiculo. El estacionamiento está lleno.");
             }
         } else {
-            vista.mostrarMensaje("\nNo hay espacio disponible en el estacionamiento.");
+            vista.mostrarMensaje("\nNo hay espacio disponible en el estacionamiento.\n");
         }
         
         vista.pausa();
@@ -55,13 +55,17 @@ public class ProgEstacionamiento {
         
         String matricula = vista.pedirMatriculaVehiculo();
         
-        vista.mostrarMensaje("\nPrecio total a pagar: " + modelo.calcularPrecio(matricula) + " soles.");
+        if (modelo.calcularPrecio(matricula) != 0) {
+            vista.limpiarConsola();
+            vista.mostrarMensaje("\nPrecio total a pagar: " + modelo.calcularPrecio(matricula) + " soles.");
+        }
         
         if (modelo.removerVehiculo(matricula)) {
             vista.mostrarMensaje("\nVehiculo retirado exitosamente.");
             vista.pausa();
         } else {
-            vista.mostrarMensaje("\nNo se encontro un vehiculo con esa matricula.");
+            vista.limpiarConsola();
+            vista.mostrarMensaje("\nNo se encontro un vehiculo con esa matricula.\n");
             vista.pausa();
         }
     }
@@ -72,7 +76,7 @@ public class ProgEstacionamiento {
     }
 
     public static void main(String[] args) {
-        Estacionamientos modelo = new Estacionamientos(2, 5.0);
+        Estacionamientos modelo = new Estacionamientos(5, 5.0);
         VentanaEstacionamiento vista = new VentanaEstacionamiento();
         ProgEstacionamiento controlador = new ProgEstacionamiento(modelo, vista);
         controlador.iniciar();
