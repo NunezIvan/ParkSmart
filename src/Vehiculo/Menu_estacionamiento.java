@@ -23,7 +23,7 @@ public class Menu_estacionamiento {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static void mostrarEstadoEstacionamiento(List<Vehiculo> listaVehiculos, int espaciosDisponibles, String sitio) {
+    public static void mostrarEstadoEstacionamiento(List<Vehiculo> listaVehiculos, int espaciosDisponibles) {
         limpiar_consola();
         printTitle();
         String tipo;
@@ -43,7 +43,7 @@ public class Menu_estacionamiento {
             System.out.println("Matricula: " + vehiculo.getMatricula() +
                                ", Tipo: " + tipo +
                                ", Hora de Entrada: " + vehiculo.getHoraEntradaFormateada()+
-                               ", Sitio: " + sitio);
+                               ", Sitio: " + vehiculo.getSitio());
         }
         
         System.out.println("\nEspacios disponibles: " + espaciosDisponibles + "\n");
@@ -88,7 +88,6 @@ public class Menu_estacionamiento {
         Scanner scanner = new Scanner(System.in);
         if (modelo.verificarDisponibilidad()) {
             Vehiculo vehiculo = Menu_estacionamiento.pedirDatosVehiculo(scanner,sitio);
-            
             if (modelo.agregarVehiculo(vehiculo)) {
                 System.out.println("\nVehiculo registrado exitosamente.");
             } else {
@@ -103,7 +102,7 @@ public class Menu_estacionamiento {
 
     private void gestionarSalidaVehiculo(String sitio) {
         Scanner scanner = new Scanner(System.in);
-        Menu_estacionamiento.mostrarEstadoEstacionamiento(modelo.getListaVehiculos(), modelo.getCapacidadTotal() - modelo.getListaVehiculos().size(), sitio);
+        Menu_estacionamiento.mostrarEstadoEstacionamiento(modelo.getListaVehiculos(), modelo.getCapacidadTotal() - modelo.getListaVehiculos().size());
         String matricula = Menu_estacionamiento.pedirMatriculaVehiculo(scanner);
         
         if (modelo.calcularPrecio(matricula,sitio) != 0) {
@@ -121,9 +120,9 @@ public class Menu_estacionamiento {
         }
     }
 
-    private void actualizarVista(String sitio) {
+    private void actualizarVista() {
         Scanner scanner = new Scanner(System.in);
-        Menu_estacionamiento.mostrarEstadoEstacionamiento(modelo.getListaVehiculos(), modelo.getCapacidadTotal() - modelo.getListaVehiculos().size(), sitio);
+        Menu_estacionamiento.mostrarEstadoEstacionamiento(modelo.getListaVehiculos(), modelo.getCapacidadTotal() - modelo.getListaVehiculos().size());
         pausa(scanner);
     }
 
@@ -135,8 +134,8 @@ public class Menu_estacionamiento {
             switch (opcion) {
                 case 1 -> gestionarEntradaVehiculo(sitio);
                 case 2 -> gestionarSalidaVehiculo(sitio);
-                case 3 -> actualizarVista(sitio);
-                case 0 -> salir = true;
+                case 3 -> actualizarVista();
+                case 4 -> salir = true;
                 default -> System.out.println("Opcion no válida. Intente de nuevo.");
             }
         }

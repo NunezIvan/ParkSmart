@@ -25,7 +25,7 @@ public class Estacionamiento {
 
     private Vehiculo buscarVehiculo(String matricula, String sitio) {
         for (Vehiculo vehiculo : listaVehiculos) {
-            if (vehiculo.getMatricula().equals(matricula) && vehiculo.getSitio().equals(sitio)) {
+            if (vehiculo.getMatricula().equals(matricula)) {
                 return vehiculo;
             }
         }
@@ -56,6 +56,7 @@ public class Estacionamiento {
     }
 
     public boolean verificarDisponibilidad() {
+        //Modificar este
         return listaVehiculos.size() < capacidadTotal;
     }
 

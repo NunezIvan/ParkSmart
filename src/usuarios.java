@@ -20,18 +20,18 @@ public class usuarios {
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Ingrese su nombre de usuario: ");
-            nombre = scanner.nextLine().trim(); // Usamos trim() para eliminar espacios en blanco
+            nombre = scanner.nextLine().trim();
             System.out.println("Ingrese su contraseña: ");
             contra = scanner.nextLine().trim();
 
-            if (nombre.length() > 15 || contra.length() > 18) { // Cambié && a ||
+            if (nombre.length() > 15 || contra.length() > 18) {
                 System.out.println("Error: La contraseña debe tener menos de 18 caracteres y el nombre debe tener menos de 15 caracteres");
                 System.out.println("Presione cualquier tecla para continuar.....");
                 scanner.nextLine();
                 Menu.limpiar_consola();
                 Menu.printTitle();
             }
-        } while (nombre.length() > 15 || contra.length() > 18); // Cambié && a ||
+        } while (nombre.length() > 15 || contra.length() > 18);
 
         agregar_usuario(nombre, contra);
         mostrar_ID(nombre, contra);
@@ -40,6 +40,26 @@ public class usuarios {
 
     private static void agregar_usuario(String nom, String contr) {
         usuarios.add(new usuario(nom, contr));
+    }
+
+    static void iniciar_sesion(){
+        Menu.limpiar_consola();
+        Menu.printTitle();
+        String nombre, contra;
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese su nombre de usuario: ");
+        nombre = scanner.nextLine().trim();
+        System.out.println("Ingrese su contraseña: ");
+        contra = scanner.nextLine().trim();
+        for(usuario usu: usuarios){
+            if(usu.getNom_Usuario().equals(nombre) && usu.getContr_Usuario().equals(contra)){
+                System.out.println("Bienvenido " + usu.getNom_Usuario());
+            }
+            else{
+                System.out.println("Error: Nombre o contraseña incorrectos");
+            }
+        }   
     }
 
     private static void mostrar_ID(String nom, String contr) {

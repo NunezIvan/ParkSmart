@@ -55,13 +55,14 @@ public class Menu {
                 return false; 
             case 1:
                 System.out.println("Has seleccionado Iniciar Sesión.");
-                // Aquí pondrías la lógica de inicio de sesión
+                usuarios.iniciar_sesion();
+                interfaz_Estacionamiento.interfaz_est();
                 break;
             case 2:
                 System.out.println("Saliendo del programa...");
-                return false; // Termina el programa
+                return false;
         }
-        return true; // Si no se seleccionó "Salir" o "Registrarse", continúa mostrando el menú
+        return true;
     }
 
     public static void limpiar_consola() {

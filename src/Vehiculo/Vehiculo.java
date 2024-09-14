@@ -17,6 +17,7 @@ public class Vehiculo {
     public Vehiculo(String matricula , String sitio, char tipo, LocalDateTime horaEntrada, LocalDateTime horaSalida){
         this.matricula = matricula;
         this.tipo = tipo;
+        this.sitio = sitio;
         this.horaEntrada = LocalDateTime.now();
     }
 
