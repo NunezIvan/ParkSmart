@@ -1,68 +1,14 @@
 package Main;
+
+import Vehiculo.Estacionamiento;
 import java.util.Scanner;
+
 public class Menu {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Pantalla_Inicio(scanner);
-    }
-
-    static void Pantalla_Inicio(Scanner consola) {
-        String[] opciones = {"Registrarse", "Inicio de Sesion", "Salir"};
-        int idx = 0;
-        boolean band = true;
-        while (band) {
-            limpiar_consola();
-            printTitle();
-
-            for (int i = 0; i < opciones.length; i++) {
-                if (i == idx) {
-                    System.out.println("-> " + opciones[i]);
-                } else {
-                    System.out.println("   " + opciones[i]);
-                }
-            }
-            System.out.println("\nUse las teclas 'w' para subir, 's' para bajar y 'Enter' para seleccionar.");
-            String input = consola.nextLine().toLowerCase();
-
-            if (input.isEmpty()) {
-                band = Seleccion(idx);
-            } else {
-                char key = input.charAt(0);
-
-                switch (key) {
-                    case 'w':
-                        idx = (idx - 1 + opciones.length) % opciones.length;
-                        break;
-                    case 's':
-                        idx = (idx + 1) % opciones.length;
-                        break;
-                    default:
-                        System.out.println("Entrada no válida, use 'w' para arriba, 's' para abajo y 'Enter' para seleccionar.");
-                        break;
-                }
-            }
-        }
-        consola.close();
-    }
-
-    private static boolean Seleccion(int idx) {
-        switch (idx) {
-            case 0:
-                System.out.println("Has seleccionado Registrarse.");
-                usuarios.registrar_usuario(); 
-                interfaz_Estacionamiento.interfaz_est();
-                return false; 
-            case 1:
-                System.out.println("Has seleccionado Iniciar Sesión.");
-                usuarios.iniciar_sesion();
-            
-                break;
-            case 2:
-                System.out.println("Saliendo del programa...");
-                return false;
-        }
-        return true;
+        Estacionamiento estacionamiento = new Estacionamiento(5, 6, 5.0);
+        interfaz_Estacionamiento.interfaz_est(scanner, estacionamiento);
     }
 
     public static void limpiar_consola() {

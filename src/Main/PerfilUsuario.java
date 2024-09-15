@@ -1,7 +1,7 @@
 package Main;
 import java.util.Scanner;
 
-public class PerfilUsuario { 
+public class PerfilUsuario {
     private String nombreUsuario;
     private String contrasena;
 
@@ -15,40 +15,38 @@ public class PerfilUsuario {
         System.out.println("Contrasena Usuario: " + contrasena);
     }
 
-    public void elegirNuevaContrasena(usuario usuarioActual) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Elegir una nueva contrasena:");
+    public void elegirNuevaContrasena(usuario usuarioActual, Scanner scanner) {
+        System.out.println("Ingrese la nueva contraseña: ");
         String nuevaContrasena = scanner.nextLine();
-        usuarioActual.setContr_Usuario(nuevaContrasena); 
-        System.out.println("Contrasena actualizada.");
+        usuarioActual.setContr_Usuario(nuevaContrasena);
+        System.out.println("Contraseña actualizada.");
     }
 
-    public void elegirNuevoPerfil(usuario usuarioActual) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Elegir nuevo nombre de usuario:");
+    public void elegirNuevoNombreUsuario(usuario usuarioActual, Scanner scanner) {
+        System.out.println("Ingrese el nuevo nombre de usuario: ");
         String nuevoNombre = scanner.nextLine();
-        usuarioActual.setNom_Usuario(nuevoNombre); 
+        usuarioActual.setNom_Usuario(nuevoNombre);
         System.out.println("Nombre de usuario actualizado.");
     }
 
-    public void eligirNuevosDatos(usuario usuarioActual) {
-        Scanner scanner = new Scanner(System.in);
-        int opcion;
+    public void eligirNuevosDatos(usuario usuarioActual, Scanner scanner) {
         mostrarDatosPerfil();
-        System.out.println("Que desea actualizar");
-        System.out.println("1.- Nombre de Usuario");
-        System.out.println("2.- Contrasena");
-        opcion = scanner.nextInt();
+        System.out.println("¿Qué desea actualizar?");
+        System.out.println("1. Nombre de Usuario");
+        System.out.println("2. Contraseña");
+
+        int opcion = scanner.nextInt();
         scanner.nextLine();
-        switch(opcion) {
+
+        switch (opcion) {
             case 1:
-                elegirNuevoPerfil(usuarioActual);
+                elegirNuevoNombreUsuario(usuarioActual, scanner);
                 break;
             case 2:
-                elegirNuevaContrasena(usuarioActual);
+                elegirNuevaContrasena(usuarioActual, scanner);
                 break;
             default:
-                System.out.println("Opción no válida.");
+                System.out.println("Opcion no valida.");
         }
     }
 }
