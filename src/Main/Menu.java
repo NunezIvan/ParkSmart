@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class Menu {
 
     public static void main(String[] args) {
+        boolean usuarioAutenticado = false;
         Scanner scanner = new Scanner(System.in);
         Estacionamiento estacionamiento = new Estacionamiento(5, 6, 5.0);
-        interfaz_Estacionamiento.interfaz_est(scanner, estacionamiento);
+        interfaz_Estacionamiento.mostrarMenuSesion(scanner, estacionamiento, usuarioAutenticado);
     }
 
     public static void limpiar_consola() {

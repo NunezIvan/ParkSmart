@@ -19,6 +19,7 @@ public class usuarios {
         Menu.limpiar_consola();
         Menu.printTitle();
         String nombre, contra;
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Ingrese su nombre de usuario (maximo 15 caracteres): ");
@@ -67,6 +68,7 @@ public class usuarios {
 
         if (!autenticado) {
             System.out.println("Error: Nombre o contraseña incorrectos");
+            scanner.nextLine();
         } else {
             PerfilUsuario perfil = new PerfilUsuario(usuarioActual.getNom_Usuario(), usuarioActual.getContr_Usuario());
             mostrarMenuEstacionamiento(scanner, estacionamiento,perfil, usuarioActual);
@@ -102,7 +104,7 @@ public class usuarios {
                     break;
                 case 3:
                     Menu.limpiar_consola();
-                    estacionamiento.mostrarEstado();
+                    interfaz_Estacionamiento.interfaz_est(scanner, estacionamiento,false);
                     break;
                 case 4:
                     Menu.limpiar_consola();
@@ -111,7 +113,8 @@ public class usuarios {
                     break;
                 case 5:
                     Menu.limpiar_consola();
-                    interfaz_Estacionamiento.interfaz_est(scanner, estacionamiento);
+                    interfaz_Estacionamiento.interfaz_est(scanner, estacionamiento,true);
+                    break;
                 case 0:
                     Menu.limpiar_consola();
                     continuar = false;
@@ -137,4 +140,5 @@ public class usuarios {
             }
         }
     }
+    
 }

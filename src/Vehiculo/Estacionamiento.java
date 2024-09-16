@@ -1,8 +1,10 @@
 package Vehiculo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class Estacionamiento {
     private List<Vehiculo> listaVehiculos;
@@ -15,6 +17,7 @@ public class Estacionamiento {
         this.tarifaPorHora = tarifaPorHora;
         this.listaVehiculos = new ArrayList<>();
         this.espacios = new String[filas][columnas];
+        agregarporDefecto();
     }
 
     public boolean agregarVehiculo(Vehiculo vehiculo, int fila, int columna) {
@@ -26,6 +29,19 @@ public class Estacionamiento {
         return false;
     }
 
+    public void agregarporDefecto(){
+        Vehiculo vehiculo1 = new Vehiculo("A1B-234", 'c', 0, 1, LocalDateTime.now(), null);
+        agregarVehiculo(vehiculo1, 0, 1);
+        Vehiculo vehiculo2 = new Vehiculo("A1A-123", 'c', 1, 2, LocalDateTime.now(), null);
+        agregarVehiculo(vehiculo2, 1, 2);
+        Vehiculo vehiculo3 = new Vehiculo("ZYX-587", 'c', 2, 3, LocalDateTime.now(), null);
+        agregarVehiculo(vehiculo3, 2, 3);
+        Vehiculo vehiculo4 = new Vehiculo("AEA-144", 'c', 4, 1, LocalDateTime.now(), null);
+        agregarVehiculo(vehiculo4, 4, 1);
+        Vehiculo vehiculo5 = new Vehiculo("JAA-322", 'c', 0, 3, LocalDateTime.now(), null);
+        agregarVehiculo(vehiculo5, 0, 3);
+    }
+
     public Vehiculo buscarVehiculoPorMatricula(String matricula) {
         for (Vehiculo vehiculo : listaVehiculos) {
             if (vehiculo.getMatricula().equalsIgnoreCase(matricula)) {
@@ -33,6 +49,23 @@ public class Estacionamiento {
             }
         }
         return null;
+    }
+
+    public void buscarVehiculoporSitio(int fila, int columna){
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getFila() == fila && vehiculo.getColumna() == columna) {
+                System.out.println("Matricula: " + vehiculo.getMatricula() +
+                        ", Tipo: " + vehiculo.getTipo() +
+                        ", Sitio: " + (char) ('A' + vehiculo.getFila()) + (vehiculo.getColumna() + 1) +
+                        ", Hora de Entrada: " + vehiculo.getHoraEntradaFormateada());
+                scanner.nextLine();
+                return;
+            }
+        }
+        System.out.println("No se encontró un vehículo en el sitio " + (char) ('A' + fila) + (columna + 1)); 
+        scanner.nextLine();
     }
 
     public boolean removerVehiculo(String matricula) {
@@ -92,24 +125,11 @@ public class Estacionamiento {
         }
     }
 
-    public void mostrarEstado() {
-        System.out.println("Estado del Estacionamiento:");
-        for (int i = 0; i < espacios.length; i++) {
-            for (int j = 0; j < espacios[i].length; j++) {
-                if (espacios[i][j] == null) {
-                    System.out.print("[Libre] ");
-                } else {
-                    System.out.print("[Ocupa] ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("Total de espacios disponibles: " + (capacidadTotal - listaVehiculos.size()));
-    }
-
     public boolean espacioOcupado(int fila, int columna) {
         return espacios[fila][columna] != null;
     }
+
+    
 
     public void seleccionarVehiculoParaSalir(Scanner scanner) {
         if (listaVehiculos.isEmpty()) {
