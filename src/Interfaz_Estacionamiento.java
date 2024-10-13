@@ -1,6 +1,6 @@
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
-import java.time.LocalDateTime;
 
 public class Interfaz_Estacionamiento {
         private static final Random random = new Random();
@@ -87,6 +87,7 @@ public class Interfaz_Estacionamiento {
         if(!estacionamiento.espacioOcupado(fila_reciente+1, columna_reciente+1, piso)){
             char tipo;
             String nombre,apellido,propietario;
+            LocalDateTime horaEntrada;
             do {
                 Menu_Usuario.limpiar_consola();
                 System.out.print("Ingrese el tipo de vehiculo (C para coche, M para moto): ");
@@ -104,10 +105,10 @@ public class Interfaz_Estacionamiento {
             System.out.println("Ingrese su apellido: ");
             apellido = scanner.nextLine();
             propietario=nombre+"_"+apellido;
- 
             String matricula = leerMatricula();
-    
-            Vehiculo vehiculo = new Vehiculo(matricula,propietario,tipo,piso,columna_reciente+1,fila_reciente+1,LocalDateTime.now(),null,'R');
+            horaEntrada = LocalDateTime.now();
+            Tickets.imprimirTicketEntrada(matricula, propietario, tipo, piso, columnas+1, filas+1, horaEntrada);
+            Vehiculo vehiculo = new Vehiculo(matricula,propietario,tipo,piso,columna_reciente+1,fila_reciente+1,horaEntrada,null,'R');
             estacionamiento.agregarVehiculo(vehiculo);
             
             if (estacionamiento.espacioOcupado(fila_reciente+1,columna_reciente+1,piso)) {
