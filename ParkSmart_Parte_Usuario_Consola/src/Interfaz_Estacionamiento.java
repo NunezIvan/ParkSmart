@@ -107,7 +107,7 @@ public class Interfaz_Estacionamiento {
             propietario=nombre+"_"+apellido;
             String matricula = leerMatricula();
             horaEntrada = LocalDateTime.now();
-            Tickets.imprimirTicketEntrada(matricula, propietario, tipo, piso, columnas+1, filas+1, horaEntrada);
+            Tickets.imprimirTicketEntrada(matricula, propietario, tipo, columnas+1, filas+1, horaEntrada);
             Vehiculo vehiculo = new Vehiculo(matricula,propietario,tipo,piso,columna_reciente+1,fila_reciente+1,horaEntrada,null,'R');
             estacionamiento.agregarVehiculo(vehiculo);
             

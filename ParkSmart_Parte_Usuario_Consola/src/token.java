@@ -95,7 +95,7 @@ public class token {
     }
 
     public token(String identificador, LocalDateTime ingreso, LocalDateTime salida, String matricula, char tipo, int pago, int columna, int fila, int piso){
-        this.identificador = getId();
+        this.identificador = genId();
         this.ingreso = ingreso;
         this.salida = null;
         this.matricula = matricula;
@@ -106,7 +106,7 @@ public class token {
         this.piso = piso;
     }
 
-    public static String getId(){
+    public static String genId(){
         Random random = new Random();
         StringBuilder codigo = new StringBuilder();
         for (int i = 0; i < 10; i++){

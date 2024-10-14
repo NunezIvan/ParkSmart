@@ -1,4 +1,5 @@
 
+import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -11,14 +12,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 
 public class Tickets {
     private final String historial = "historial.txt";
 
-    public static void registrarTicketEntrada(String identificador ,String matricula, String propietario, char tipo, int piso, int columna, int fila, LocalDateTime horaEntrada){
+    public static void registrarTicketEntrada(String identificador ,String matricula, String propietario, char tipo, int columna, int fila, LocalDateTime horaEntrada){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter("tickets.txt", true))){
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String linea = identificador + ";" + matricula + ";" + propietario + ";" + tipo + ";"+piso+";"+columna+";"+fila+";"+horaEntrada.format(formato);
+            String linea = identificador + ";" + matricula + ";" + propietario + ";" + tipo + ";"+columna+";"+fila+";"+horaEntrada.format(formato);
             bw.write(linea);
             bw.newLine();
         } catch(IOException e){
@@ -90,11 +94,11 @@ public class Tickets {
     }
 
 
-    public static void imprimirTicketEntrada(String matricula, String propietario, char tipo, int piso, int columna, int fila, LocalDateTime horaEntrada){
+    public static void imprimirTicketEntrada(String matricula, String propietario, char tipo, int columna, int fila, LocalDateTime horaEntrada){
         Menu_Usuario.limpiar_consola();
         System.out.println("Bienvenido " + propietario);
         System.out.println("Reciba su ticket");
-        String identificador = token.getId();
+        String identificador = token.genId();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatoHora = horaEntrada.format(formatter);
 
@@ -111,6 +115,13 @@ public class Tickets {
                 break;
         }
 
+        
+        String ticket = "================================= \n" + "          TICKET DE ENTRADA      \n" + "================================= \n" + "ID: " + identificador + "\n" + "Matricula: " + matricula + "\n" + "Propietario: " + propietario + "\n" + "Tipo de vehiculo: " + tipoVehiculo + "\n" + "Ubicación: Columna " + columna + ", Fila " + fila + "\n" + "Hora de entrada: " + formatoHora + "\n" + "================================="; 
+        
+
+        mostrarTicket(ticket);
+
+        /* 
         System.out.println("=================================");
         System.out.println("          TICKET DE ENTRADA      ");
         System.out.println("=================================");
@@ -118,20 +129,25 @@ public class Tickets {
         System.out.println("Matricula: " + matricula);
         System.out.println("Propietario: " + propietario);
         System.out.println("Tipo de vehiculo: "+tipoVehiculo);
-        System.out.println("Ubicación: Piso " + piso + ", Columna" + columna + ", Fila " + fila);
+        System.out.println("Ubicación:" + " Columna" + columna + ", Fila " + fila);
         System.out.println("Hora de Entrada: " + formatoHora);
         System.out.println("=================================");
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Presione Enter para confirmar la recepción del ticket");
         scanner.nextLine();
-        registrarTicketEntrada(identificador, matricula, propietario, tipo, piso, columna, fila, horaEntrada);
+        */
+
+        registrarTicketEntrada(identificador, matricula, propietario, tipo, columna, fila, horaEntrada);
+        /*
         System.out.println("Ticket confirmado!");
         try{
             Thread.sleep(3000);
         } catch(InterruptedException e){
             e.printStackTrace();
         }
+        scanner.close();
+        */
+        
     }
     public void Salida(){
         Scanner scanner = new Scanner(System.in);
@@ -155,6 +171,24 @@ public class Tickets {
             }
         }
         scanner.close();
+    }
+
+    public static void mostrarTicket(String ticket){
+        JOptionPane optionPane = new JOptionPane(ticket, JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
+
+        JDialog dialog = optionPane.createDialog("Ticket");
+
+        dialog.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    dialog.dispose();
+                }
+            }
+        });
+
+        dialog.setFocusable(true);
+        dialog.setVisible(true);
     }
 
     private token buscarTicket(String codigo){
@@ -201,4 +235,5 @@ public class Tickets {
 
         return costoTotal;
     }
+
 }
