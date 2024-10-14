@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 
 public class Estacionamiento {
     private final String NOMBRE_ARCHIVO = "Estacionamiento.txt";
@@ -125,6 +126,13 @@ public class Estacionamiento {
     private void cargarVehiculosIniciales() {
         this.agregarVehiculo(new Vehiculo("A1B-234","Luis_Guevara",'c',1,2,1,LocalDateTime.now(),null,'R'));
         this.agregarVehiculo(new Vehiculo("A1A-123", "Luis_Brenis",'m',2,1,1,LocalDateTime.now(),null,'R'));
+        String id = token.genId();
+
+        Tickets.registrarTicketEntrada(id,"A1B-234","Luis_Guevara",'c',2,1,LocalDateTime.now());
+        id = token.genId();
+
+        Tickets.registrarTicketEntrada(id,"A1A-123" ,"Luis_Brenis" , 'm', 1, 1, LocalDateTime.now());
+        
     }
 
 }
