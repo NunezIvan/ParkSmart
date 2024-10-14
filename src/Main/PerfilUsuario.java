@@ -1,3 +1,5 @@
+//CLASE ELIMINADA EN UN FUTURO, EXCLUSIVA PARA LA EJECUCION EN CONSOLA
+
 package Main;
 import java.util.Scanner;
 
@@ -14,22 +16,23 @@ public class PerfilUsuario {
         System.out.println("Nombre de Usuario: " + nombreUsuario);
         System.out.println("Contrasena Usuario: " + contrasena);
     }
-
-    public void elegirNuevaContrasena(usuario usuarioActual, Scanner scanner) {
+    
+    public void elegirNuevaContrasena(Administrador usuarioActual, Scanner scanner) {
         System.out.println("Ingrese la nueva contraseña: ");
         String nuevaContrasena = scanner.nextLine();
         usuarioActual.setContr_Usuario(nuevaContrasena);
         System.out.println("Contraseña actualizada.");
     }
 
-    public void elegirNuevoNombreUsuario(usuario usuarioActual, Scanner scanner) {
+    public void elegirNuevoNombreUsuario(Administrador usuarioActual, Scanner scanner) {
         System.out.println("Ingrese el nuevo nombre de usuario: ");
         String nuevoNombre = scanner.nextLine();
         usuarioActual.setNom_Usuario(nuevoNombre);
         System.out.println("Nombre de usuario actualizado.");
     }
-
-    public void eligirNuevosDatos(usuario usuarioActual, Scanner scanner) {
+    
+    //Cambio de usuario o contraseña
+    public void eligirNuevosDatos(Administrador usuarioActual, Scanner scanner) {
         mostrarDatosPerfil();
         System.out.println("¿Qué desea actualizar?");
         System.out.println("1. Nombre de Usuario");
