@@ -12,7 +12,7 @@ public class Estacionamiento {
     private double tarifaPorHora;
     
     private Archivo archivo;
-    private String nombreRecurso = "data/vehiculos.txt";
+    private String nombreRecurso = "C:\\Users\\andre\\OneDrive\\Documentos\\NetBeansProjects\\Algoritmica II\\Gestor_Estacionamiento\\ParkSmart-Parte_Usuario_Interfaz\\vehiculos.txt";
 
 
     public Estacionamiento(int filas, int columnas, double tarifaPorHora) {

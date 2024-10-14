@@ -64,8 +64,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
         labelRegistrarNuevoUsuario = new javax.swing.JLabel();
         panelRegistroDePagos = new Interfaces.PanelRound();
         labelRegistroDePagos = new javax.swing.JLabel();
-        panelModificarDatosUsuario = new Interfaces.PanelRound();
-        labelModificarDatosUsuario = new javax.swing.JLabel();
         labelBienvenidos = new javax.swing.JLabel();
         imagenPuntosSuspensivos = new javax.swing.JLabel();
         labelNombreMostrar = new javax.swing.JLabel();
@@ -316,7 +314,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
         labelRegistrarNuevoUsuario.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         labelRegistrarNuevoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelRegistrarNuevoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelRegistrarNuevoUsuario.setText("REGISTRAR NUEVO USUARIO");
+        labelRegistrarNuevoUsuario.setText("CONTROL DE EMPLEADOS");
         labelRegistrarNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelRegistrarNuevoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -380,39 +378,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
         );
 
         panelRound2.add(panelRegistroDePagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, 250, 70));
-
-        panelModificarDatosUsuario.setBackground(new java.awt.Color(0, 0, 0));
-        panelModificarDatosUsuario.setRoundBottomLeft(25);
-        panelModificarDatosUsuario.setRoundBottomRight(25);
-        panelModificarDatosUsuario.setRoundTopLeft(25);
-        panelModificarDatosUsuario.setRoundTopRight(25);
-
-        labelModificarDatosUsuario.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
-        labelModificarDatosUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        labelModificarDatosUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelModificarDatosUsuario.setText("MODIFICAR DATOS DE USUARIO");
-        labelModificarDatosUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelModificarDatosUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelModificarDatosUsuarioMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelModificarDatosUsuarioMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelModificarDatosUsuarioLayout = new javax.swing.GroupLayout(panelModificarDatosUsuario);
-        panelModificarDatosUsuario.setLayout(panelModificarDatosUsuarioLayout);
-        panelModificarDatosUsuarioLayout.setHorizontalGroup(
-            panelModificarDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelModificarDatosUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        panelModificarDatosUsuarioLayout.setVerticalGroup(
-            panelModificarDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelModificarDatosUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-        );
-
-        panelRound2.add(panelModificarDatosUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
 
         labelBienvenidos.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
         labelBienvenidos.setText("!BIENVENIDO/A,");
@@ -519,14 +484,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
         labelRegistrarPago.setForeground(Color.white);
     }//GEN-LAST:event_labelRegistrarPagoMouseExited
 
-    private void labelModificarDatosUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarDatosUsuarioMouseEntered
-        labelModificarDatosUsuario.setForeground(Color.orange);
-    }//GEN-LAST:event_labelModificarDatosUsuarioMouseEntered
-
-    private void labelModificarDatosUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarDatosUsuarioMouseExited
-        labelModificarDatosUsuario.setForeground(Color.white);
-    }//GEN-LAST:event_labelModificarDatosUsuarioMouseExited
-
     private void labelModificarTareasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarTareasMouseEntered
         labelModificarTareas.setForeground(Color.orange);
     }//GEN-LAST:event_labelModificarTareasMouseEntered
@@ -562,7 +519,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_labelRegistroDePagosMouseClicked
 
     private void labelVerEstacionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVerEstacionamientoMouseClicked
-        VerEstacionamiento ventana = new VerEstacionamiento();
+        VerEstacionamiento ventana = new VerEstacionamiento("Administrador");
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_labelVerEstacionamientoMouseClicked
@@ -575,8 +532,8 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
 
     private void labelRegistrarNuevoUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegistrarNuevoUsuarioMouseClicked
         //Vehiculo = usuario
-        RegistrarVehiculo ventanaRegistrarVehiculo = new RegistrarVehiculo();
-        ventanaRegistrarVehiculo.setVisible(true);
+        ControlEmpleado ventanaControlEmpleado = new ControlEmpleado();
+        ventanaControlEmpleado.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_labelRegistrarNuevoUsuarioMouseClicked
     
@@ -605,11 +562,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new MenuAdministrador().setVisible(true);
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imagenPuntosSuspensivos;
@@ -618,7 +571,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelBienvenidos;
     private javax.swing.JLabel labelExit;
-    private javax.swing.JLabel labelModificarDatosUsuario;
     private javax.swing.JLabel labelModificarDisponibilidad;
     private javax.swing.JLabel labelModificarTareas;
     private javax.swing.JLabel labelNombreMostrar;
@@ -631,7 +583,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel labelVerEstacionamiento;
     private javax.swing.JPanel panelBotonExit;
     private Interfaces.PanelRound panelGestionEspacios;
-    private Interfaces.PanelRound panelModificarDatosUsuario;
     private Interfaces.PanelRound panelModificarDisponibilidad;
     private Interfaces.PanelRound panelModificarTareas;
     private Interfaces.PanelRound panelRegistrarNuevoUsuario;

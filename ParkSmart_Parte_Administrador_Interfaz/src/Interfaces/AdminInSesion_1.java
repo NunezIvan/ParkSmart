@@ -1,8 +1,16 @@
 
 package Interfaces;
 
+import static Main.Empleado.crearArchivoConEmpleadosPorDefecto;
 import java.awt.Color;
+import Main.LoginLogica; 
+import javax.swing.JOptionPane;
+import java.io.IOException;
 
+/**
+ *
+ * @author Luis Bizarro
+ */
 public class AdminInSesion_1 extends javax.swing.JFrame {
 
     /**
@@ -13,6 +21,7 @@ public class AdminInSesion_1 extends javax.swing.JFrame {
     
     public AdminInSesion_1() {
         initComponents();
+        crearArchivoConEmpleadosPorDefecto();
         this.setLocationRelativeTo(null);
     }
     
@@ -203,13 +212,15 @@ public class AdminInSesion_1 extends javax.swing.JFrame {
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addComponent(labelIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labelIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -233,7 +244,7 @@ public class AdminInSesion_1 extends javax.swing.JFrame {
                 .addComponent(labelIniciaSesion)
                 .addGap(39, 39, 39)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -289,31 +300,41 @@ public class AdminInSesion_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_panelBotonExitMouseExited
 
     private void labelIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIngresarMouseClicked
-        // Aqui al hacer click deberia mandarme a otra ventana
+   // Aquí al hacer click debería mandarme a otra ventana
+    
+    // Esto es para guardar el nombre del usuario
+    nombreDeUsuario = txtFieldUsuario.getText();    
+    String password = new String(passFieldContrasenia.getPassword()); // Convertir el campo de password a String
+
+    // Crear una instancia de la clase Login
+    LoginLogica login = new LoginLogica();
+
+    // Intentar logear al usuario
+    try {
+        // Obtener la categoría del usuario (Administrador o cualquier otra categoría)
+        String categoria = login.logearUsuarioYObtenerCategoria(nombreDeUsuario, password);
         
-        //Esto es para guardar el nombre del usuario
-        nombreDeUsuario = txtFieldUsuario.getText();    
-        
-        
-        if(nombreDeUsuario.equals("Luis")){
-            //Esto es para ir hacia la otra ventana
-            MenuAdministrador ventanaMenuAdministrador = new MenuAdministrador();
-            ventanaMenuAdministrador.setVisible(true);
-        
-        this.setVisible(false);
-        }else{
-            javax.swing.JOptionPane.showMessageDialog(this, "Error, "+nombreDeUsuario+" no se encuentra registrado");
+        if (categoria != null) {
+            // Si la categoría es 'Administrador', abrir la ventana del menú de administrador
+            if (categoria.equalsIgnoreCase("Administrador")) {
+                MenuAdministrador ventanaMenuAdministrador = new MenuAdministrador();
+                ventanaMenuAdministrador.setVisible(true);
+                this.dispose(); // Cerrar la ventana actual
+            } 
+            // Cualquier otra categoría abrirá la ventana del menú de empleado
+            else {
+                MenuEmpleado ventanaMenuEmpleado = new MenuEmpleado();
+                ventanaMenuEmpleado.setVisible(true);
+                this.dispose(); // Cerrar la ventana actual
+            }
+        } else {
+            // Si el inicio de sesión falla, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "Error, usuario o contraseña incorrectos.");
         }
-        
-        
-        
-        //Esto es para probar si funciona el boton al hacer click
-        /*
-        if(getTxtFieldUsuario() == (nombre de usuario a comparar)){
-            JOptionPane.showMessageDialog("INICIO SESION EXITOSO");
-        }
-        
-        */
+    } catch (Exception e) {
+        // Manejar cualquier error de lectura de archivo u otro problema
+        JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + e.getMessage());
+    }
         
     }//GEN-LAST:event_labelIngresarMouseClicked
 
