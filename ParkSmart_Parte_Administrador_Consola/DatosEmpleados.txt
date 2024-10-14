@@ -1,0 +1,8 @@
+Admin,Park,admin,admin+2058,00001,Administrador
+Soto,Luis,luisoto,luisoto+9131,00002,Observador
+Meiggs,Alexander,alemeiggs,alemeiggs+7776,00005,Observador
+Martel,GIacomo,giamartel,giamartel+7393,00020,Coordinador
+Silva,Eduardo,edusilva,edusilva+6712,00030,Observador
+Caldas,Lucia,luccaldas,luccaldas+8996,00047,Coordinador
+Solange,Xiomara,xiosolange,xiosolange+2656,00048,Observador
+Reyes,Mario,marreyes,marreyes+7212,00049,A
