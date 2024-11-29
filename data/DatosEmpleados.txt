@@ -1,0 +1,3 @@
+Perez,Juan,juaperez,juaperez+6986,00001,Administrador
+Garcia,Maria,margarcia,margarcia+5569,00002,Coordinador
+Lopez,Carlos,carlopez,carlopez+1229,00003,Observador
